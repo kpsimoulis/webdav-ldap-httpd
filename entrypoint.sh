@@ -27,12 +27,12 @@ RequestHeader edit Destination ^https: http: early
     AuthName "ViFE WebDAV: Login mit Nutzernamen und Passwort" 
     AuthBasicProvider ldap
     AuthType Basic
-    AuthLDAPGroupAttribute memberUid
-    AuthLDAPGroupAttributeIsDN on
+    AuthLDAPGroupAttribute ${AuthLDAPGroupAttribute} 
+    AuthLDAPGroupAttributeIsDN ${AuthLDAPGroupAttributeIsDN}
     AuthLDAPURL ${AuthLDAPURL}
     AuthLDAPBindDN "${AuthLDAPBindDN}" 
     AuthLDAPBindPassword "${AuthLDAPBindPassword}"
-    Require ldap-group "${RequireLDAPGroup}"
+    Require ldap-group ${RequireLDAPGroup}
 </Directory>
 EOF
 
