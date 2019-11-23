@@ -3,10 +3,10 @@ LABEL maintainer="Peter Stadler for the ViFE"
 
 # For information about these parameters see 
 # https://httpd.apache.org/docs/2.4/mod/mod_authnz_ldap.html
-ARG AuthLDAPURL
-ARG AuthLDAPBindDN
-ARG AuthLDAPBindPassword
-ARG RequireLDAPGroup
+#ARG AuthLDAPURL
+#ARG AuthLDAPBindDN
+#ARG AuthLDAPBindPassword
+#ARG RequireLDAPGroup
 ARG RUNAS_USER 
 
 COPY entrypoint.sh /my-docker-entrypoint.sh

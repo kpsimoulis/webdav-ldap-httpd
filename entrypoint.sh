@@ -9,6 +9,11 @@ LoadModule	authnz_ldap_module   modules/mod_authnz_ldap.so
 DocumentRoot "/var/webdav"
 DavLockDB "/run/lock/apache/DavLock.db"
 
+PassEnv AuthLDAPURL
+PassEnv AuthLDAPBindDN
+PassEnv AuthLDAPBindPassword
+PassEnv RequireLDAPGroup
+
 # rewriting Destination because we're behind an SSL terminating reverse proxy
 # see http://www.dscentral.in/2013/04/04/502-bad-gateway-svn-copy-reverse-proxy/  
 RequestHeader edit Destination ^https: http: early
@@ -22,12 +27,12 @@ RequestHeader edit Destination ^https: http: early
     AuthName "ViFE WebDAV: Login mit Nutzernamen und Passwort" 
     AuthBasicProvider ldap
     AuthType Basic
-    AuthLDAPGroupAttribute member
+    AuthLDAPGroupAttribute memberUid
     AuthLDAPGroupAttributeIsDN on
     AuthLDAPURL ${AuthLDAPURL}
     AuthLDAPBindDN "${AuthLDAPBindDN}" 
-    AuthLDAPBindPassword "${AuthLDAPBindPassword}" 
-    Require ldap-group CN=${RequireLDAPGroup},CN=Users,DC=muwi,DC=hfm-detmold,DC=de
+    AuthLDAPBindPassword "${AuthLDAPBindPassword}"
+    Require ldap-group "${RequireLDAPGroup}"
 </Directory>
 EOF
 
